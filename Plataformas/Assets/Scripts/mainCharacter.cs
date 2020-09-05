@@ -24,8 +24,7 @@ public class mainCharacter : MonoBehaviour
             moveRight();
         }
         if (Input.GetKeyDown(KeyCode.W)) {
-            Rigidbody rigidBody = gameObject.GetComponent<Rigidbody>();
-            rigidBody.AddForce(transform.up * jumpHeight);
+            Jump();
         }
     }
 
@@ -35,5 +34,10 @@ public class mainCharacter : MonoBehaviour
 
     public void moveRight() {
         transform.Translate(Vector3.right * movementSpeed * Time.deltaTime);
+    }
+
+    public void Jump() {
+        Rigidbody rigidBody = gameObject.GetComponent<Rigidbody>();
+        rigidBody.AddForce(transform.up * jumpHeight);
     }
 }

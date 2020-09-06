@@ -9,6 +9,7 @@ public class mainCharacter : MonoBehaviour
     public float jumpHeight = 600f;
     private bool movingRight = false;
     private bool movingLeft = false;
+    private bool isJumping = false;
     // Start is called before the first frame update
 
     //private variables
@@ -39,6 +40,11 @@ public class mainCharacter : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        isJumping = false;
+    }
+
     //methods
     public void moveLeft()
     {
@@ -54,8 +60,12 @@ public class mainCharacter : MonoBehaviour
 
     public void Jump()
     {
-        Rigidbody rigidBody = gameObject.GetComponent<Rigidbody>();
-        rigidBody.AddForce(transform.InverseTransformDirection(transform.up) * jumpHeight);
+        if (!isJumping)
+        {
+            Rigidbody rigidBody = gameObject.GetComponent<Rigidbody>();
+            rigidBody.AddForce(transform.InverseTransformDirection(transform.up) * jumpHeight);
+            isJumping = true;
+        }
     }
 
     public void startsMoving(bool right)

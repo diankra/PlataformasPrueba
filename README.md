@@ -51,3 +51,6 @@ For this assignment, I'm planning three complexity levels: Level 1 (basic), Leve
 - Enemies whose intelligence is ruled by a finite state machine
 - Make the interface pretty
 - Add textures
+
+# Desarrollo / Development
+

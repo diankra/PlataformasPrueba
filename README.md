@@ -53,8 +53,4 @@ For this assignment, I'm planning three complexity levels: Level 1 (basic), Leve
 - Add textures
 
 # Desarrollo / Development
-## Movimiento de la cámara / Camera movement
-He probado varios métodos para que la cámara siguiera al personaje jugador. El más obvio es hacerla su hija, pero eso hace que la cámara rote junto con él, cosa que no queda bien. Otra opción era asignarle la posición en el eje X del Cubo, pero este tiembla de forma imperceptible al chocar con la colisión del cubo, cosa que hacía que la cámara tuviera un efecto tembleque que no interesaba. Finalmente, decidí que el Cubo se encargara de informar a la cámara cuando se moviera de forma que esta lo siguiera.
 
-//English
-I have tested different methods so that the camera would follow the player. Firstly, I tested the obvious: make the main camera a child of the Cube. The problem with this was that the camera rotated along with the Cube, and it is not what I wanted. Second, I tried assigning the X value of the Cube's position to the camera. This didn't work either, as the Cube trembles a bit when hitting the floor, so this made everything tremble. Finally, I decided that the Cube would inform the camera whenever it moved so the camera would follow it. 

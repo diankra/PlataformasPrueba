@@ -19,6 +19,8 @@ For this assignment, I'm planning three complexity levels: Level 1 (basic), Leve
 - Muerte por caída
 - Menú de muerte que permita salir o reiniciar el nivel
 - Meta 
+- Coleccionables
+-Enemigos
 
 //English
 - Basic level with colliders
@@ -29,18 +31,23 @@ For this assignment, I'm planning three complexity levels: Level 1 (basic), Leve
 - Death by falling
 - Death menu that allows the player to restart the level or quit the game
 - Finish line
+- Collectables
+- Enemies
 
 ## Nivel 2 / Level 2
 - Pinchos
-- Enemigos que se muevan de forma fija
 - Power ups
 - Sistema de vidas
+- Trampolines
+- Doble salto
 
 //English
 - Spikes
 - Enemies that move on a fixed line
 - Power ups
 - Limited lives system
+- Trampolines
+- Double jump
 
 ## Nivel 3 / Level 3
 - Enemigos cuya inteligencia se modele con una máquina de estados finita

@@ -4,27 +4,18 @@ using UnityEngine;
 
 public class mainCamera : MonoBehaviour
 {
-
+    private GameObject cube;
     // Start is called before the first frame update
     void Start()
     {
-
+        cube = GameObject.Find("Main Cube");
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        transform.position = new Vector3(cube.transform.position.x, transform.position.y, transform.position.z);
     }
 
-    //These methods are called by the mainCharacter when it moves, so the camera follows it seamlessly
-    public void moveLeft( float movementSpeed)
-    {
-        transform.Translate(transform.InverseTransformDirection(Vector3.left) * movementSpeed * Time.deltaTime);
-    }
-
-    public void moveRight(float movementSpeed)
-    {
-        transform.Translate(transform.InverseTransformDirection(Vector3.right) * movementSpeed * Time.deltaTime);
-    }
+    
 }

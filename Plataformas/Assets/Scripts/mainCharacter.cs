@@ -43,13 +43,13 @@ public class mainCharacter : MonoBehaviour
     public void moveLeft()
     {
         transform.Translate(transform.InverseTransformDirection(Vector3.left) * movementSpeed * Time.deltaTime);
-        camera.moveLeft(movementSpeed);
+        
     }
 
     public void moveRight()
     {
         transform.Translate(transform.InverseTransformDirection(Vector3.right) * movementSpeed * Time.deltaTime);
-        camera.moveRight(movementSpeed);
+        
     }
 
     public void Jump()

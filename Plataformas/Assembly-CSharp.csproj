@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\mainCamera.cs" />
     <Compile Include="Assets\Scripts\mainCharacter.cs" />
+    <Compile Include="Assets\Scripts\sceneLoader.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Universidad/Practicas/Jognox/PlataformasPrueba/Plataformas/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

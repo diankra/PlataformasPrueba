@@ -4,23 +4,34 @@ using UnityEngine;
 
 public class mainCharacter : MonoBehaviour
 {
+    //public variables
     public float movementSpeed = 2;
     public float jumpHeight = 600f;
+    private bool movingRight = false;
+    private bool movingLeft = false;
     // Start is called before the first frame update
+
+    //private variables
+    private mainCamera camera;
+
+    
     void Start()
     {
         //Change the color to blue
-        gameObject.GetComponent<Renderer>().material.color = Color.blue; 
+        gameObject.GetComponent<Renderer>().material.color = Color.blue;
+
+        //find the camera
+        camera = GameObject.Find("Main Camera").GetComponent<mainCamera>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //to test movement ERASE WHEN MOBILE CONTROLS
-        if (Input.GetKey(KeyCode.A)) {
+
+        if (movingLeft) {
             moveLeft();
         }
-        if (Input.GetKey(KeyCode.D)) {
+        if (movingRight) {
             moveRight();
         }
         if (Input.GetKeyDown(KeyCode.W)) {
@@ -28,16 +39,51 @@ public class mainCharacter : MonoBehaviour
         }
     }
 
-    public void moveLeft() {
-        transform.Translate(Vector3.left * movementSpeed * Time.deltaTime);
+    //methods
+    public void moveLeft()
+    {
+        transform.Translate(transform.InverseTransformDirection(Vector3.left) * movementSpeed * Time.deltaTime);
+        camera.moveLeft(movementSpeed);
     }
 
-    public void moveRight() {
-        transform.Translate(Vector3.right * movementSpeed * Time.deltaTime);
+    public void moveRight()
+    {
+        transform.Translate(transform.InverseTransformDirection(Vector3.right) * movementSpeed * Time.deltaTime);
+        camera.moveRight(movementSpeed);
     }
 
-    public void Jump() {
+    public void Jump()
+    {
         Rigidbody rigidBody = gameObject.GetComponent<Rigidbody>();
-        rigidBody.AddForce(transform.up * jumpHeight);
+        rigidBody.AddForce(transform.InverseTransformDirection(transform.up) * jumpHeight);
     }
+
+    public void startsMoving(bool right)
+    {
+        //Method triggered by pressing the bottom part of the screen
+        //The most usual direction will be right
+        if (right)
+        {
+            movingRight = true;
+        }
+        else
+        {
+            movingLeft = true;
+        }
+    }
+
+    public void stopsMoving(bool right)
+    {
+        if (right)
+        {
+            movingRight = false;
+        }
+        else
+        {
+            movingLeft = false;
+        }
+    }
+
+
 }
+

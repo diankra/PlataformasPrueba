@@ -29,10 +29,10 @@ public class mainCharacter : MonoBehaviour
     void Update()
     {
 
-        if (movingLeft) {
+        if ((movingLeft)||(Input.GetKey(KeyCode.A))) {
             moveLeft();
         }
-        if (movingRight) {
+        if ((movingRight)||(Input.GetKey(KeyCode.D))) {
             moveRight();
         }
         if (Input.GetKeyDown(KeyCode.W)) {

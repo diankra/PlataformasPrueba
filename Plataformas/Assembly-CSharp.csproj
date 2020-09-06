@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\fallDeathScript.cs" />
+    <Compile Include="Assets\Scripts\finishLineScript.cs" />
     <Compile Include="Assets\Scripts\mainCamera.cs" />
     <Compile Include="Assets\Scripts\mainCharacter.cs" />
     <Compile Include="Assets\Scripts\sceneLoader.cs" />

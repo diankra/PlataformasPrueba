@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -10,6 +9,8 @@ public class Enemy : MonoBehaviour
     public float speed;
     private float initPosition;
     private Rigidbody rigidBody;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,8 @@ public class Enemy : MonoBehaviour
 
         //Initialize the RigidBody component
         rigidBody = GetComponent<Rigidbody>();
+
+
     }
 
     // Update is called once per frame
@@ -47,14 +50,12 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        speed = 0 - speed;
         if (collision.gameObject.name == "Main Cube")
         {
-            //this check could be skipped if we were sure only the player will fall down
-            SceneManager.LoadScene("deathScene");
+            mainCharacter mc = collision.gameObject.GetComponent<mainCharacter>();
+            mc.decreaseLives();
         }
-        else //if it hits a collision, turns to the other direction
-        {
-            speed = 0 - speed;
-        }
+        
     }
 }

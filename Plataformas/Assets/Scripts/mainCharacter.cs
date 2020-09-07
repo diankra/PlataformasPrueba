@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class mainCharacter : MonoBehaviour
 {
@@ -9,20 +11,30 @@ public class mainCharacter : MonoBehaviour
     public float jumpHeight = 600f;
     private bool movingRight = false;
     private bool movingLeft = false;
-    private bool isJumping = false;
+    private bool isJumping = true;
+    public int lives = 3;
+    public int spheresToLife = 2; //when the player collects a number of spheres, its life increases
+
+    private Text livesCounter;
+    private Text spheresCounter;
+    private int spheres = 0;
     // Start is called before the first frame update
 
-    //private variables
-    private mainCamera camera;
 
-    
     void Start()
     {
         //Change the color to blue
         gameObject.GetComponent<Renderer>().material.color = Color.blue;
 
-        //find the camera
-        camera = GameObject.Find("Main Camera").GetComponent<mainCamera>();
+        //Initialize the life counter
+        livesCounter = GameObject.Find("LivesCounter").GetComponent<Text>();
+        livesCounter.text = "Lives: " + lives;
+        
+        //Initialize the collectable counter
+        spheresCounter = GameObject.Find("SpheresCounter").GetComponent<Text>();
+        //in case you restart the level
+
+        spheresCounter.text = "Spheres:" + spheres;
     }
 
     // Update is called once per frame
@@ -94,6 +106,35 @@ public class mainCharacter : MonoBehaviour
         }
     }
 
+    public void decreaseLives()
+    {
+        lives -= 1;
+        actualizeLives();
+        if (lives == 0)
+        {
+            //Death
+            SceneManager.LoadScene("deathScene");
+        }
+    }
 
+    public void increaseLives()
+    {
+        lives += 1;
+        actualizeLives();
+    }
+    public void addSphere()
+    {
+        spheres += 1;
+        if (spheres == spheresToLife)
+        {
+            increaseLives();
+            spheres = 0;
+        }
+        spheresCounter.text = "Spheres:" + spheres;
+    }
+    public void actualizeLives()
+    {
+        livesCounter.text = "Lives: " + lives;
+    }
 }
 

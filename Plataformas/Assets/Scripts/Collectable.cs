@@ -1,15 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Collectable : MonoBehaviour
 {
-    private static int collected = 0;
+   
+    private Text counter;
     // Start is called before the first frame update
     void Start()
     {
         //Change the color to green
         gameObject.GetComponent<Renderer>().material.color = Color.green;
+
+       
     }
 
     // Update is called once per frame
@@ -21,9 +25,8 @@ public class Collectable : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Main Cube")
-        { 
-            collected += 1;
-            Debug.Log("Collecionados: " + collected);
+        {
+            other.gameObject.GetComponent<mainCharacter>().addSphere();
             Destroy(gameObject);
         }
     }

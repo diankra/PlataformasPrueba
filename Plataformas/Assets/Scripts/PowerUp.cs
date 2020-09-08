@@ -11,7 +11,7 @@ public class PowerUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Change the color to red
+        //Change the color to cyan
         gameObject.GetComponent<Renderer>().material.color = Color.cyan;
     }
 

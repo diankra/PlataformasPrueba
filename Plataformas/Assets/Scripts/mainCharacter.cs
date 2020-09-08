@@ -16,6 +16,8 @@ public class mainCharacter : MonoBehaviour
     public int lives = 3;
     public int spheresToLife = 2; //when the player collects a number of spheres, its life increases
 
+    private Rigidbody rigidBody;
+
     private Text livesCounter;
     private Text spheresCounter;
     private int spheres = 0;
@@ -36,7 +38,9 @@ public class mainCharacter : MonoBehaviour
         //Initialize the life counter
         livesCounter = GameObject.Find("LivesCounter").GetComponent<Text>();
         livesCounter.text = "Lives: " + lives;
-        
+
+        //Initialize Rigidbody
+        rigidBody = gameObject.GetComponent<Rigidbody>();
         //Initialize the collectable counter
         spheresCounter = GameObject.Find("SpheresCounter").GetComponent<Text>();
         //in case you restart the level
@@ -89,12 +93,19 @@ public class mainCharacter : MonoBehaviour
         if ((!isJumping)||(numberJumps==1))
         {
             numberJumps += 1;
-            Rigidbody rigidBody = gameObject.GetComponent<Rigidbody>();
+           
             rigidBody.AddForce(transform.InverseTransformDirection(transform.up) * jumpHeight);
             isJumping = true;
         }
     }
 
+    public void Jump(float height)
+    {
+        numberJumps += 1;
+        
+        rigidBody.AddForce(transform.InverseTransformDirection(transform.up) * height);
+        isJumping = true;
+    }
     public void startsMoving(bool right)
     {
         //Method triggered by pressing the bottom part of the screen

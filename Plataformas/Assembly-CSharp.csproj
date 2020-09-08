@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Collectable.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\PowerUp.cs" />
     <Compile Include="Assets\Scripts\fallDeathScript.cs" />
     <Compile Include="Assets\Scripts\finishLineScript.cs" />
     <Compile Include="Assets\Scripts\mainCamera.cs" />

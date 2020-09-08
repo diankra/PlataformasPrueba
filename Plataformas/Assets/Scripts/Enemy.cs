@@ -54,7 +54,11 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.name == "Main Cube")
         {
             mainCharacter mc = collision.gameObject.GetComponent<mainCharacter>();
-            mc.decreaseLives();
+            if (mc.isPowerful())
+            {
+                Destroy(this.gameObject);
+            } else
+                mc.decreaseLives();
         }
         
     }

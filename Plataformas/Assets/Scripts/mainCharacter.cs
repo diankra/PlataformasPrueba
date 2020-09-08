@@ -12,12 +12,17 @@ public class mainCharacter : MonoBehaviour
     private bool movingRight = false;
     private bool movingLeft = false;
     private bool isJumping = true;
+
     public int lives = 3;
     public int spheresToLife = 2; //when the player collects a number of spheres, its life increases
 
     private Text livesCounter;
     private Text spheresCounter;
     private int spheres = 0;
+
+    private bool powerful = false; //flag that indicates wether the player has collected a power-up
+    private float startedPower = -1; //the starting value doesn't really matter
+    private float activePower = 0; //stores the time one specific power up is active
     // Start is called before the first frame update
 
 
@@ -33,14 +38,20 @@ public class mainCharacter : MonoBehaviour
         //Initialize the collectable counter
         spheresCounter = GameObject.Find("SpheresCounter").GetComponent<Text>();
         //in case you restart the level
-
         spheresCounter.text = "Spheres:" + spheres;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (((Time.time - startedPower) >= activePower) && (powerful))
+        {
+            powerful = false;
 
+            //Change the color to blue
+            gameObject.GetComponent<Renderer>().material.color = Color.blue;
+        }
         if ((movingLeft)||(Input.GetKey(KeyCode.A))) {
             moveLeft();
         }
@@ -135,6 +146,22 @@ public class mainCharacter : MonoBehaviour
     public void actualizeLives()
     {
         livesCounter.text = "Lives: " + lives;
+    }
+
+    public void becomePowerful(float timeActive)
+    {
+        powerful = true;
+        startedPower = Time.time;
+        activePower = timeActive;
+
+        //Change the color to blue
+        gameObject.GetComponent<Renderer>().material.color = Color.cyan;
+    }
+
+    public bool isPowerful()
+    {
+        //this method makes it impossible for the player to take multiple power ups at the same time
+        return powerful;
     }
 }
 

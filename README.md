@@ -35,14 +35,14 @@ For this assignment, I'm planning three complexity levels: Level 1 (basic), Leve
 - Enemies
 
 ## Nivel 2 / Level 2
-- Pinchos
+- Plataformas resbaladizas
 - Power ups
 - Sistema de vidas
 - Trampolines
 - Doble salto
 
 //English
-- Spikes
+- Slippery platforms
 - Enemies that move on a fixed line
 - Power ups
 - Limited lives system

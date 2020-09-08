@@ -23,6 +23,8 @@ public class mainCharacter : MonoBehaviour
     private bool powerful = false; //flag that indicates wether the player has collected a power-up
     private float startedPower = -1; //the starting value doesn't really matter
     private float activePower = 0; //stores the time one specific power up is active
+
+    private int numberJumps = 0;
     // Start is called before the first frame update
 
 
@@ -66,6 +68,7 @@ public class mainCharacter : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         isJumping = false;
+        numberJumps = 0;
     }
 
     //methods
@@ -83,8 +86,9 @@ public class mainCharacter : MonoBehaviour
 
     public void Jump()
     {
-        if (!isJumping)
+        if ((!isJumping)||(numberJumps==1))
         {
+            numberJumps += 1;
             Rigidbody rigidBody = gameObject.GetComponent<Rigidbody>();
             rigidBody.AddForce(transform.InverseTransformDirection(transform.up) * jumpHeight);
             isJumping = true;

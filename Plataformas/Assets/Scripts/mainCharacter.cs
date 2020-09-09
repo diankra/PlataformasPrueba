@@ -111,6 +111,16 @@ public class mainCharacter : MonoBehaviour
         rigidBody.AddForce(transform.InverseTransformDirection(transform.up) * height);
         isJumping = true;
     }
+
+    public void startJumpPoint()
+    {
+        isJumping = false;
+    }
+
+    public void endJumpingPoint()
+    {
+        isJumping = true;
+    }
     public void startsMoving(bool right)
     {
         //Method triggered by pressing the bottom part of the screen

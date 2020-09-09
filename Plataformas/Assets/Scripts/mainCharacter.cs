@@ -58,13 +58,16 @@ public class mainCharacter : MonoBehaviour
             //Change the color to blue
             gameObject.GetComponent<Renderer>().material.color = Color.blue;
         }
-        if ((movingLeft)||(Input.GetKey(KeyCode.A))) {
+        if ((movingLeft) || (Input.GetKey(KeyCode.A)))
+        {
             moveLeft();
         }
-        if ((movingRight)||(Input.GetKey(KeyCode.D))) {
+        if ((movingRight) || (Input.GetKey(KeyCode.D)))
+        {
             moveRight();
         }
-        if (Input.GetKeyDown(KeyCode.W)) {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
             Jump();
         }
     }
@@ -78,22 +81,24 @@ public class mainCharacter : MonoBehaviour
     //methods
     public void moveLeft()
     {
-        transform.Translate(transform.InverseTransformDirection(Vector3.left) * movementSpeed * Time.deltaTime);
-        
+        //transform.Translate(transform.InverseTransformDirection(Vector3.left) * movementSpeed * Time.deltaTime);
+        rigidBody.AddForce(transform.InverseTransformDirection(-transform.right) * movementSpeed, ForceMode.Acceleration);
     }
 
     public void moveRight()
     {
-        transform.Translate(transform.InverseTransformDirection(Vector3.right) * movementSpeed * Time.deltaTime);
-        
+        //transform.Translate(transform.InverseTransformDirection(Vector3.right) * movementSpeed * Time.deltaTime);
+        rigidBody.AddForce(transform.InverseTransformDirection(transform.right) * movementSpeed, ForceMode.Acceleration);
+
+
     }
 
     public void Jump()
     {
-        if ((!isJumping)||(numberJumps==1))
+        if ((!isJumping) || (numberJumps == 1))
         {
             numberJumps += 1;
-           
+
             rigidBody.AddForce(transform.InverseTransformDirection(transform.up) * jumpHeight);
             isJumping = true;
         }
@@ -102,7 +107,7 @@ public class mainCharacter : MonoBehaviour
     public void Jump(float height)
     {
         numberJumps += 1;
-        
+
         rigidBody.AddForce(transform.InverseTransformDirection(transform.up) * height);
         isJumping = true;
     }
@@ -178,5 +183,7 @@ public class mainCharacter : MonoBehaviour
         //this method makes it impossible for the player to take multiple power ups at the same time
         return powerful;
     }
+
+
 }
 

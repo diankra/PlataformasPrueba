@@ -4,30 +4,39 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
+
+/*! \class mainCharacter mainCharacter.cs "assets/scripts/mainCharacter.cs"
+ *  \brief This class controls the main character and all its variables. Allows the player to control its movement, counts the lives and the collectables and controls the 
+ * character's response when interacting with other objects. 
+ */
 public class mainCharacter : MonoBehaviour
 {
-    //public variables
-    public float movementSpeed = 2;
-    public float jumpHeight = 600f;
-    private bool movingRight = false;
-    private bool movingLeft = false;
-    private bool isJumping = true;
+    //public attributes
 
-    public int lives = 3;
-    public int spheresToLife = 2; //when the player collects a number of spheres, its life increases
+    public float movementSpeed = 2; //!< Sets the character's acceleration when moving left or right.
+    public float jumpHeight = 600f; //!< Sets the character's impulse for jumping.
+    private bool movingRight = false; //!< Indicates if the right direction button or key is pressed.
+    private bool movingLeft = false; //!< Indicates if the left direction button or key is pressed.
+    private bool isJumping = true; //!< Indicates if the jump direction button or key is pressed.
 
-    private Rigidbody rigidBody;
+    public int lives = 3; //!< Sets the lives the player has. These are decreased when colliding with enemies.
+    private int spheres = 0; //!< Private attribute which counts the spheres the player has gathered. 
+    public int spheresToLife = 5; //!< Sets the amount of spheres the player has to gather in order to earn an extra life.
 
-    private Text livesCounter;
-    private Text spheresCounter;
-    private int spheres = 0;
+    private Rigidbody rigidBody; //!< Rigidbody component needed for movement based on forces.
 
-    private bool powerful = false; //flag that indicates wether the player has collected a power-up
-    private float startedPower = -1; //the starting value doesn't really matter
-    private float activePower = 0; //stores the time one specific power up is active
+    private Text livesCounter; //!< Interface component called for showing the number of lives the player has left.
+    private Text spheresCounter; //!< Interface component called for showing the number of spheres the player has gathered.
+    
 
-    private int numberJumps = 0;
+    private bool powerful = false; //!< Flag that indicates wether the player has collected a power-up.
+    private float startedPower = -1; //!< Private attribute that indicates the time when a power-up has been gathered.
+    private float activePower = 0; //!< Attribute that stores the value timeActive of the power-up most recently gathered.
+
+    private int numberJumps = 0; //!< This attribute counts the consecutive jumps the player has done in order to allow double-jump
     // Start is called before the first frame update
+
 
 
     void Start()
@@ -51,13 +60,9 @@ public class mainCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (((Time.time - startedPower) >= activePower) && (powerful))
-        {
-            powerful = false;
-
-            //Change the color to blue
-            gameObject.GetComponent<Renderer>().material.color = Color.blue;
-        }
+        
+        // Movement control 
+        //Movement is controlled by invisible buttons (Android) or keyboard keys (for testing in the computer)
         if ((movingLeft) || (Input.GetKey(KeyCode.A)))
         {
             moveLeft();
@@ -70,29 +75,50 @@ public class mainCharacter : MonoBehaviour
         {
             Jump();
         }
+
+        //This is only relevant when the player has consumed a power-up
+        //Checks if the effect of the power-up has passed
+        if (((Time.time - startedPower) >= activePower) && (powerful))
+        {
+            powerful = false;
+
+            //Change the color to blue
+            gameObject.GetComponent<Renderer>().material.color = Color.blue;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        //When the character touches the floor, it can no longer be considered to be jumping
         isJumping = false;
         numberJumps = 0;
     }
 
-    //methods
+    /**
+     * Allows the character to move to the left.
+     * Adds an acceleration force in the left hand direction equal to the movementSpeed attribute
+     */
     public void moveLeft()
     {
-        //transform.Translate(transform.InverseTransformDirection(Vector3.left) * movementSpeed * Time.deltaTime);
         rigidBody.AddForce(transform.InverseTransformDirection(-transform.right) * movementSpeed, ForceMode.Acceleration);
     }
 
+    /**
+     * Allows the character to move to the right.
+     * Adds an acceleration force in the right hand direction equal to the movementSpeed attribute
+     */
     public void moveRight()
     {
-        //transform.Translate(transform.InverseTransformDirection(Vector3.right) * movementSpeed * Time.deltaTime);
         rigidBody.AddForce(transform.InverseTransformDirection(transform.right) * movementSpeed, ForceMode.Acceleration);
-
 
     }
 
+    /**
+     * Allows the character to jump.
+     * Adds an impulse force upwards equal to the jumpHeight attribute.
+     * It first checks that the player is either on the floor or on his first jump. This makes it impossible to jump through the level without
+     * touching the floor.
+     */
     public void Jump()
     {
         if ((!isJumping) || (numberJumps == 1))
@@ -104,6 +130,10 @@ public class mainCharacter : MonoBehaviour
         }
     }
 
+    /**
+     * Routine called when the player hits a Trampoline. Makes it jump every time it hits these kinds of collisions. 
+     * Adds an impulse force upwards equal to the height attribute.
+     */
     public void Jump(float height)
     {
         numberJumps += 1;
@@ -112,19 +142,31 @@ public class mainCharacter : MonoBehaviour
         isJumping = true;
     }
 
+    /**
+     * Routine called when the character is close to a Jumping Point. 
+     * It allows one extra jump only when the Jumping Point is close. 
+     */
     public void startJumpPoint()
     {
         isJumping = false;
     }
 
+    /**
+     * Routine called when the character is no longer close to a Jumping Point. 
+     * It indicates that the character can no longer use the extra jump the Jumping Point allows. 
+     */
     public void endJumpingPoint()
     {
         isJumping = true;
     }
+
+    /**
+     * Method triggered when one of the movement buttons is pressed. 
+     * The button indicates wether it is the right or the left one using the boolean right. 
+     * Activates the corresponding movement flag, allowing the player to move in the indicated direction until the button is no longer pressed. 
+     */
     public void startsMoving(bool right)
     {
-        //Method triggered by pressing the bottom part of the screen
-        //The most usual direction will be right
         if (right)
         {
             movingRight = true;
@@ -135,6 +177,11 @@ public class mainCharacter : MonoBehaviour
         }
     }
 
+    /**
+     * Method triggered when one of the movement buttons stops being pressed. 
+     * The button indicates wether it is the right or the left one using the boolean right. 
+     * Deactivates the corresponding movement flag, so that the character stops moving in that direction. 
+     */
     public void stopsMoving(bool right)
     {
         if (right)
@@ -147,6 +194,10 @@ public class mainCharacter : MonoBehaviour
         }
     }
 
+    /**
+     * Method triggered when the player collides with an enemy. 
+     * Decreases in one the lives the player has left. If after that, there are zero lives, it shows the death screen. 
+     */
     public void decreaseLives()
     {
         lives -= 1;
@@ -158,11 +209,10 @@ public class mainCharacter : MonoBehaviour
         }
     }
 
-    public void increaseLives()
-    {
-        lives += 1;
-        actualizeLives();
-    }
+    /**
+    * Method triggered when the player steps on a collectable sphere. 
+    * Adds one collectable to the counter. Checks if there are enough spheres to add one life to the player.  
+    */
     public void addSphere()
     {
         spheres += 1;
@@ -173,24 +223,47 @@ public class mainCharacter : MonoBehaviour
         }
         spheresCounter.text = "Spheres:" + spheres;
     }
+
+    /**
+     * Method called when the player has gathered enough collectable spheres. 
+     * Adds one to the total of lives. 
+     */
+    public void increaseLives()
+    {
+        lives += 1;
+        actualizeLives();
+    }
+
+    /**
+     * Method used to actualize the number of lives shown on the UI. 
+     * Can be called either from decreaseLives() or from increaseLives()
+     */
     public void actualizeLives()
     {
         livesCounter.text = "Lives: " + lives;
     }
 
+    /**
+     * Method triggered when the player collides with a power-up. 
+     * Activates the powerful flag, which allows the player to kill the enemies in the same way as Pac-man. 
+     * Sets the time the power-up has been taken and the duration it has, so that the power-up can be deactivated when its time
+     * runs out. Changes the main character's color to cyan, so that the player knows when they are powerfull and when the effects have passed
+     */
     public void becomePowerful(float timeActive)
     {
         powerful = true;
         startedPower = Time.time;
         activePower = timeActive;
 
-        //Change the color to blue
         gameObject.GetComponent<Renderer>().material.color = Color.cyan;
     }
 
+    /**
+     * Checks wether the powerful flag is active. 
+     * It is called by the power-up to avoid taking one when the player is already powerfull. 
+     */
     public bool isPowerful()
     {
-        //this method makes it impossible for the player to take multiple power ups at the same time
         return powerful;
     }
 

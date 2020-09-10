@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*! \class Collectable
+ *  \brief This class is associated with the collectable spheres. When they are picked, they self-destruct. If the player collects a certain number of
+ *  them, they give them an extra life. 
+ */
 public class Collectable : MonoBehaviour
 {
    

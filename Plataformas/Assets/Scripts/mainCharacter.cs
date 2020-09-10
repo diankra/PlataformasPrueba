@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 
 
-/*! \class mainCharacter mainCharacter.cs "assets/scripts/mainCharacter.cs"
+/*! \class mainCharacter 
  *  \brief This class controls the main character and all its variables. Allows the player to control its movement, counts the lives and the collectables and controls the 
  * character's response when interacting with other objects. 
  */
@@ -92,6 +92,13 @@ public class mainCharacter : MonoBehaviour
         //When the character touches the floor, it can no longer be considered to be jumping
         isJumping = false;
         numberJumps = 0;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        //When the character stops touching the floor, it is considered to be jumping
+        isJumping = true;
+        numberJumps += 1;
     }
 
     /**

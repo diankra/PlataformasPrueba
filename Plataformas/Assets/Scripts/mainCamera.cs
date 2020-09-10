@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*! \class mainCamera
+ *  \brief This class controls the camera so that it follows the player on the X axis. 
+ */
 public class mainCamera : MonoBehaviour
 {
     private GameObject cube;

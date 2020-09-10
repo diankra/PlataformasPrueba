@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class finishLineScript : MonoBehaviour
+/*! \class FinishLine
+ *  \brief This class is associated with the end of the level. It has a collision that when hit, the level is finished. 
+ */
+public class FinishLine : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*! \class PowerUp
+ *  \brief This class is associated with the power-up objects placed on the level. These give the player the special power of killing enemies for
+ *  a short period of time. The power-ups can only be picked if the player isn't using one already and once picked they destroy themselves. 
+ */
 public class PowerUp : MonoBehaviour
 {
-
-    //The power up allows the player to kill the enemies (like in Pac-Man)
-
-    public float timeActive = 10; //time the power-up will affect the player in seconds
+    public float timeActive = 10; //!< This attribute indicates how much time the power-up is active (in seconds)
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,7 @@ public class PowerUp : MonoBehaviour
             if (!character.isPowerful())
             {
                 character.becomePowerful(timeActive);
-                Destroy(this.gameObject);
+                Destroy(gameObject);
             }
         }
     }

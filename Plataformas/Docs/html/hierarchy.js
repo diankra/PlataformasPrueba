@@ -9,8 +9,8 @@ var hierarchy =
     [ "MonoBehaviour", null, [
       [ "Collectable", "class_collectable.html", null ],
       [ "Enemy", "class_enemy.html", null ],
-      [ "fallDeathScript", "classfall_death_script.html", null ],
-      [ "finishLineScript", "classfinish_line_script.html", null ],
+      [ "FallDeath", "class_fall_death.html", null ],
+      [ "FinishLine", "class_finish_line.html", null ],
       [ "JumperPoint", "class_jumper_point.html", null ],
       [ "mainCamera", "classmain_camera.html", null ],
       [ "mainCharacter", "classmain_character.html", null ],

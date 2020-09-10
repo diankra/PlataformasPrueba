@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*! \class JumperPoint
+ *  \brief This class controls the jumper points. These allow the character an extra jump when close. 
+ */
 public class JumperPoint : MonoBehaviour
 {
     // Start is called before the first frame update

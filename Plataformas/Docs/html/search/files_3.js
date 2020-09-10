@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['falldeathscript_2ecs_109',['fallDeathScript.cs',['../fall_death_script_8cs.html',1,'']]],
-  ['finishlinescript_2ecs_110',['finishLineScript.cs',['../finish_line_script_8cs.html',1,'']]]
+  ['falldeath_2ecs_109',['FallDeath.cs',['../_fall_death_8cs.html',1,'']]],
+  ['finishline_2ecs_110',['FinishLine.cs',['../_finish_line_8cs.html',1,'']]]
 ];

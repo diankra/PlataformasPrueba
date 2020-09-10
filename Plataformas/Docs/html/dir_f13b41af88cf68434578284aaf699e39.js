@@ -6,11 +6,11 @@ var dir_f13b41af88cf68434578284aaf699e39 =
     [ "Enemy.cs", "_enemy_8cs.html", [
       [ "Enemy", "class_enemy.html", "class_enemy" ]
     ] ],
-    [ "fallDeathScript.cs", "fall_death_script_8cs.html", [
-      [ "fallDeathScript", "classfall_death_script.html", null ]
+    [ "FallDeath.cs", "_fall_death_8cs.html", [
+      [ "FallDeath", "class_fall_death.html", null ]
     ] ],
-    [ "finishLineScript.cs", "finish_line_script_8cs.html", [
-      [ "finishLineScript", "classfinish_line_script.html", null ]
+    [ "FinishLine.cs", "_finish_line_8cs.html", [
+      [ "FinishLine", "class_finish_line.html", null ]
     ] ],
     [ "JumperPoint.cs", "_jumper_point_8cs.html", [
       [ "JumperPoint", "class_jumper_point.html", null ]

@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*! \class Enemy
+ *  \brief This class controls the enemies. It sets their movements, speed and collisions. 
+ *  The enemies move between two points continuously. They change direction if they collide with any other object so that they don't get stuck. 
+ *  When hitting the character, they can either die (if a power-up is active) or take lives from it.
+ */
 public class Enemy : MonoBehaviour
 {
-    public float distanceRight;
-    public float distanceLeft;
-    public float speed;
-    private float initPosition;
-    private Rigidbody rigidBody;
+    public float distanceRight; //!< Distance they reach moving to the rigt direction from their starting point. 
+    public float distanceLeft;//!< Distance they reach moving to the left direction from their starting point. 
+    public float speed; //!< This attribute indicates their speed of movement. 
+    private float initPosition; //!< This attribute stores their initial X position (as it is the only one that changes).
+    private Rigidbody rigidBody; //!< Rigidbody component attached to the enemy.  
 
 
     // Start is called before the first frame update

@@ -133,6 +133,12 @@ Me habría gustado mejorar el diseño del nivel, ya que podría explotar las mec
 //English
 I would have liked to improve the level design to better explore its features. Also, as previously said, I would have liked to program the enemies so that they had a simple AI system so that they would run from the protagonist when it consumed a power-up. Additionaly, if I had had more time, I would have improved the aspect of the game with personalized buttons and, at least, 2D backgrounds. I would have also added a tutorial to explain the main features and controls in a simple way to new players and a pause menu.
 
+# Documentación / Docs
+He creado una documentación para el proyecto usando un plugin Doxyfile para Unity a partir de los comentarios del código. Para acceder a ella, hay que entrar en Plataformas/Docs/html/index.html
+
+//English
+I have created docs for the project using a Doxyfile for Unity file that creates docs from the comments in the code. To see it, you have to open the file Plataformas/Docs/html/index.html
+
 # Conclusiones / Conclusions
 Hasta ahora había hecho distintos proyectos en Unity, pero pocas veces me había parado a programar un juego completo.
 Considero que el resultado está poco pulido debido al poco tiempo, pero es una demo funcional que contiene las bases para desarrollarse y convertirse en algo mucho más atractivo si se le dedicaran más horas. 

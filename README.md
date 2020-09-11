@@ -60,4 +60,13 @@ For this assignment, I'm planning three complexity levels: Level 1 (basic), Leve
 - Add textures
 
 # Desarrollo / Development
+Para llevar a cabo el proyecto, trabajé todas las mañanas de la semana. 
+El primer día, me centré en planificar el proyecto a grandes rasgos y organizar en niveles las principales mecánicas que quería incluir. 
+Estando todo planeado, comencé a trabajar en la programación. Algunas mecánicas resultaron más difíciles que otras, pero fui capaz de acabar con una demo jugable. 
+Finalmente, los dos últimos días los dediqué a crear una buena documentación y a redactar el resumen. 
+
+## Movimiento / Movement
+Quería que, a pesar del aspecto 3D del juego, el cubo solo se pudiera mover en 2D, por lo que aproveché las propiedades del Rigidbody para congelar su posición en Z. En un principio, programé el movimiento como siempre lo había hecho en clase: aplicando una transformación sobre las coordenadas del cubo y usando una fuerza de impulso sobre el Rigidbody para el salto. Sin embargo, la inclusión de plataformas resbaladizas hizo que tuviera que cambiar la forma en la que se desplazaba de izquierda a derecha y acabé usando fuerzas de aceleración para que el cubo fuera afectado por la fricción del suelo. De esta forma, me quedó un juego más basado en la física de lo que había planteado en un principio. 
+
+## Controles / Controls
 
